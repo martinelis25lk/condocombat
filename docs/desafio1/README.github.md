@@ -47,7 +47,7 @@ npm run preview
 ### Passo 1 — Pré-requisitos
 
 - [ ] Conta na [Netlify](https://app.netlify.com/signup)
-- [ ] Repositório no [GitHub](https://github.com)
+- [ ] Conta no [GitHub](https://github.com)
 - [ ] Netlify CLI instalada (opcional, para testes locais):
   ```bash
   npm install -g netlify-cli
