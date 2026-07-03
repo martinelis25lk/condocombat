@@ -55,7 +55,41 @@ npm run preview
 
 ---
 
-### Passo 2 — Criar arquivo `netlify.toml`
+### Passo 2 — Criar Site na Netlify
+
+Antes de configurar a pipeline, é necessário ter um site criado na Netlify. Existem duas formas:
+
+#### Opção A — Via Dashboard (recomendado para iniciantes)
+
+1. Acesse [app.netlify.com](https://app.netlify.com)
+2. Clique em **"Add new site"** → **"Import an existing project"**
+3. Escolha **"Deploy manually"** (vamos usar CI/CD, não o Git integration da Netlify)
+4. Arraste qualquer pasta vazia ou clique em **"Deploy manually"** sem arquivos
+5. O site será criado com um nome aleatório (ex: `brave-curie-a1b2c3`)
+6. Vá em **Site settings → General → Site details**
+7. Renomeie o site para algo significativo (ex: `condocombat-landing`)
+8. Anote o **Site ID** (UUID) — você vai precisar dele no Passo 4
+
+#### Opção B — Via CLI
+
+```bash
+# Instalar Netlify CLI (se ainda não tiver)
+npm install -g netlify-cli
+
+# Login na Netlify
+netlify login
+
+# Criar novo site
+netlify sites:create --name condocombat-landing
+
+# O comando retorna o Site ID — anote-o!
+```
+
+> 💡 Após criar o site, você terá o **Site ID** (UUID) e o **nome do site** (slug). Ambos serão usados nos secrets do GitHub.
+
+---
+
+### Passo 3 — Criar arquivo `netlify.toml`
 
 Crie `landing/netlify.toml` na raiz da landing page:
 
@@ -77,7 +111,7 @@ Crie `landing/netlify.toml` na raiz da landing page:
 
 ---
 
-### Passo 3 — Configurar Secrets no GitHub
+### Passo 4 — Configurar Secrets no GitHub
 
 Vá em **Settings → Secrets and variables → Actions** e adicione:
 
@@ -104,7 +138,7 @@ Vá em **Settings → Secrets and variables → Actions** e adicione:
 
 ---
 
-### Passo 4 — Criar Workflow GitHub Actions
+### Passo 5 — Criar Workflow GitHub Actions
 
 Crie o diretório `.github/workflows/` na **raiz do repositório** (não dentro de `landing/`) e adicione `deploy-landing.yml`:
 
@@ -205,7 +239,7 @@ Isso evita rodar a pipeline quando outras partes do monorepo (backend, frontend)
 
 ---
 
-### Passo 5 — Validar Localmente Antes de Subir
+### Passo 6 — Validar Localmente Antes de Subir
 
 ```bash
 # 1. Testes
@@ -227,7 +261,7 @@ act --job ci --container-architecture linux/amd64
 
 ---
 
-### Passo 6 — Commit e Push
+### Passo 7 — Commit e Push
 
 ```bash
 git add .
@@ -239,7 +273,7 @@ A pipeline será disparada automaticamente. Acompanhe em **Actions** no GitHub.
 
 ---
 
-### Passo 7 — Verificar Deploy
+### Passo 8 — Verificar Deploy
 
 Após a pipeline concluir:
 1. Acesse a URL do site: `https://{site-name}.netlify.app`
