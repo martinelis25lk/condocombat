@@ -37,6 +37,16 @@ jobs:
         with:
           terraform_version: "latest"
 
+
+
+      - name: 💾 Restaurar Terraform State (cache)
+        uses: actions/cache/restore@v4
+        with:
+          path: terraform/terraform.tfstate
+          key: terraform-state-${{ github.run_id }}
+          restore-keys: |
+            terraform-state-
+
       - name: 🔍 Terraform Init
         working-directory: ./terraform
         run: terraform init
@@ -70,3 +80,11 @@ jobs:
           TF_VAR_netlify_api_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           TF_VAR_netlify_site_name: ${{ secrets.NETLIFY_SITE_NAME }}
           TF_VAR_netlify_team_id: ${{ secrets.NETLIFY_TEAM_ID }}
+      
+      - name: 💾 Salvar Terraform State (cache)
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: terraform/terraform.tfstate
+          key: terraform-state-${{ github.run_id }}
+      
