@@ -7,6 +7,7 @@ data "netlify_site" "landing" {
 # Aponta a Landing Page pra URL pública do Frontend (Render)
 resource "netlify_environment_variable" "landing_public_app_url" {
   site_id = data.netlify_site.landing.id
+  team_id = var.netlify_team_id
   key     = "PUBLIC_APP_URL"
   scopes  = ["builds"]
   values = [

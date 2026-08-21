@@ -63,3 +63,8 @@ variable "netlify_team_slug" {
   description = "Slug do seu team/workspace na Netlify."
   default     = "martinelis25lk"
 }
+
+variable "netlify_team_id" {
+  type        = string
+  description = "ID (não o slug) do seu team na Netlify — necessário para netlify_environment_variable."
+}
