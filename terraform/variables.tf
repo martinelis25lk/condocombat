@@ -56,3 +56,10 @@ variable "netlify_site_name" {
   type    = string
   default = "condocombat-landing-gui"
 }
+
+
+variable "netlify_team_slug" {
+  type        = string
+  description = "Slug do seu team/workspace na Netlify."
+  default     = "martinelis25lk"
+}

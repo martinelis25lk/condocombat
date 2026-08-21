@@ -13,9 +13,10 @@ resource "render_web_service" "backend" {
   region            = var.render_region
   health_check_path = "/health"
 
-  runtime_source = {
+   runtime_source = {
     image = {
-      image_url = "docker.io/${var.dockerhub_username}/condocombat-backend:latest"
+      image_url = "docker.io/${var.dockerhub_username}/condocombat-backend"
+      tag       = "latest"
     }
   }
 
