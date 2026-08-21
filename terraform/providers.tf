@@ -27,5 +27,6 @@ provider "render" {
 }
 
 provider "netlify" {
-  token = var.netlify_api_token
+  token              = var.netlify_api_token
+  default_team_slug  = var.netlify_team_slug
 }

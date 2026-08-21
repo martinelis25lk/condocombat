@@ -1,8 +1,7 @@
 # O site já existe na Netlify (condocombat-landing-gui) — usamos "data" para
 # referenciá-lo, não "resource" (não é o Terraform que cria o site).
 data "netlify_site" "landing" {
-  team_slug = var.netlify_team_slug
-  name      = var.netlify_site_name
+  name = var.netlify_site_name
 }
 
 # Aponta a Landing Page pra URL pública do Frontend (Render)
